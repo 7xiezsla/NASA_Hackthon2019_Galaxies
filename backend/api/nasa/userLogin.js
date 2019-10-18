@@ -43,7 +43,7 @@ module.exports = (app) => {
     app.post('/nasa/user/login', async(req, res) => {
 
         const client = await req.MongoClient.connect(req.mongoConnStr, req.mongoConnOpt);
-        const db = client.db('xa');
+        const db = client.db('nasa');
         let qry = req.body;
         qry.password = pwdEncode(qry.password);
 

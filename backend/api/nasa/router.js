@@ -23,7 +23,7 @@ module.exports = (app, fs) => {
 
             const client = await req.MongoClient.connect(req.mongoConnStr, req.mongoConnOpt);
 
-            const db = client.db('xa');
+            const db = client.db('nasa');
             await db
                 .collection('session')
                 .findOne({ _id: sId, dId: dId })
