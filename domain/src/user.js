@@ -4,6 +4,8 @@ class User{
     this.account = ''
     this.password = ''
     this.name = ''
+    this.sex = ''
+    this.age = ''
     this.score = 0
     this.coordinate = new Coordinate()
   }
