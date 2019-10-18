@@ -1,4 +1,5 @@
-const Coordinate = require('./coordinate')
+const Coordinate = require('./coordinate');
+
 class User {
     constructor() {
         this.account = ''
@@ -11,5 +12,4 @@ class User {
         this.coordinate = new Coordinate()
     }
 }
-
-module.exports = User
+module.exports = User;
