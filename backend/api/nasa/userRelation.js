@@ -35,7 +35,6 @@ module.exports = (app) => {
                 break;
         }
 
-        res.end();
         client.close();
 
     });
