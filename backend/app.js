@@ -45,8 +45,8 @@ app.use('/doc/sbir', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app = require('./api/router.js')(app, fs);
 
 const sslOptions = {
-    key: fs.readFileSync('/home/seal/ssl/private.key'),
-    cert: fs.readFileSync('/home/seal/ssl/certificate.crt')
+    key: fs.readFileSync('/home/seal/ssl/server.key'),
+    cert: fs.readFileSync('/home/seal/ssl/server.crt')
 };
 
 let httpServer = http.createServer(app);
