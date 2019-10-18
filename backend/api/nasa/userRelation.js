@@ -8,9 +8,11 @@ module.exports = (app) => {
         const reqBody = req.body;
         const qry = { account: req.account };
 
+        let udt;
+
         switch (behavior) {
             case 'add':
-                const udt = { $push: reqBody };
+                udt = { $push: reqBody };
                 await db
                     .collection('user')
                     .updateOne(qry, udt)
@@ -22,7 +24,7 @@ module.exports = (app) => {
                     });
                 break;
             case 'remove':
-                const udt = { $pull: reqBody }
+                udt = { $pull: reqBody }
                 await db
                     .collection('user')
                     .updateOne(qry, udt)
