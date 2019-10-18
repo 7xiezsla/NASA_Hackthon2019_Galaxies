@@ -46,7 +46,7 @@ app = require('./api/router.js')(app, fs);
 
 const sslOptions = {
     key: fs.readFileSync('/home/seal/ssl/server-key.pem'),
-    cert: fs.readFileSync('/home/seal/ssl/cert.pem'),
+    cert: fs.readFileSync('/home/seal/cert.pem'),
     ca: fs.readFileSync('/home/seal/ssl/server-cert.pem')
 };
 
