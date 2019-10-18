@@ -50,9 +50,9 @@ module.exports = (app, fs) => {
         const MongoClient = Mongo.MongoClient;
         const mongoConnStr = 'mongodb://seal:seal1234@localhost:27017/admin';
         const mongoConnOpt = { useNewUrlParser: true, useUnifiedTopology: true }; // warning fixs
-        const User = require('./src/user');
-        const Landmark = require('./src/landmark');
-        const Coordinate = require('./src/coordinate');
+        const User = require('../domain/src/user.js');
+        const Landmark = require('../domain/src/landmark.js');
+        const Coordinate = require('../domain/src/coordinate.js');
         req.Mongo = Mongo;
         req.MongoClient = MongoClient;
         req.mongoConnStr = mongoConnStr;
