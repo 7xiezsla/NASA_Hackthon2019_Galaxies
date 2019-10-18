@@ -48,7 +48,7 @@ module.exports = (app, fs) => {
         let isAuthenticated = false;
         const Mongo = require('mongodb');
         const MongoClient = Mongo.MongoClient;
-        const mongoConnStr = 'mongodb://xnet:23222635@r.xnet.world:27017/admin';
+        const mongoConnStr = 'mongodb://seal:seal1234@localhost:27017/admin';
         const mongoConnOpt = { useNewUrlParser: true, useUnifiedTopology: true }; // warning fixs
         const User = require('./src/user');
         const Landmark = require('./src/landmark');
