@@ -1,23 +1,23 @@
 module.exports = (app) => {
 
-    app.get('/admin/tbl/:tblName', async(req, res) => {
+    app.post('/nasa/user/register', async(req, res) => {
 
         const client = await req.MongoClient.connect(req.mongoConnStr, req.mongoConnOpt);
         const db = client.db('xa');
-        const tblName = req.params.tblName;
+        const reqBody = req.body;
+        reqBody._id = reqBody.account;
 
-        db
-            .collection(tblName)
-            .find()
-            .toArray()
+        await db
+            .collection('user')
+            .insertOne(reqBody)
             .then(result1 => {
-                res.json(result1);
-                client.close();
+                res.json({ status: 1 });
             })
             .catch(e => {
                 res.sendStatus(500);
-                client.close();
             });
+
+        client.close();
 
     });
 
