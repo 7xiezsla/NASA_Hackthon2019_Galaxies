@@ -15,8 +15,8 @@ class Api{
   }
 
   static detect(source){
-    // let url = 'https://us-central1-ezchair-a4bc4.cloudfunctions.net/fireServer/detect'
-    let url = 'http://localhost:4000/detect'
+    let url = 'https://us-central1-ezchair-a4bc4.cloudfunctions.net/fireServer/detect'
+    // let url = 'http://localhost:4000/detect'
     return Axios.post(url, {source})
   }
 }

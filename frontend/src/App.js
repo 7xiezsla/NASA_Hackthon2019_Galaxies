@@ -11,6 +11,7 @@ import GarbageResult from './components/GarbageResult'
 import FriendRank from './components/FriendRank'
 import Collection from './components/Collection'
 import Api from './Api'
+import Spinner from 'react-bootstrap/Spinner'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-html5-camera-photo/build/css/index.css'
@@ -36,6 +37,7 @@ class App extends React.Component{
       showGarbageResult: false,
       showFriendRank: false,
       showCollection: false,
+      showSpinner: false,
       rewardPic: null,
       garbagePic: null,
       fetchGarbage: false,
@@ -113,6 +115,8 @@ class App extends React.Component{
           <Camera 
             onTakePhoto = {async (data)=>{
               
+              this.handleModal('showSpinner', true)
+              this.handleModal('showCamera', false)
               let fetchGarbage = false
               try{
                 let detectResult = await Api.detect(data)
@@ -156,6 +160,19 @@ class App extends React.Component{
         {
           this.state.showMap ?
             <Map actions={this.handleModal}/>
+          :
+          null
+        }
+
+        {
+          this.state.showSpinner ?
+            <Spinner animation="border" role="status" style={{
+              position:'relative',
+              top:'40vh',
+              left:'45%'
+            }}>
+              <span className="sr-only">Loading...</span>
+            </Spinner>
           :
           null
         }
