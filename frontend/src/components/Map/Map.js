@@ -13,7 +13,7 @@ import nationParkIcon from './NationPark.png'
 import schoolIcon from './school.png'
 import girlIcon from './girl.png'
 import trashIcon from './trash.png'
-// import greenCircleIcon from './greenCircle.png'
+import greenCircleIcon from './greenCircle.png'
 // import redCircleIcon from './redCircle.png'
 
 // import  measureData from './data.json'
@@ -30,6 +30,7 @@ const AnyReactComponent = ({text, img, env}) => {
     let style ={width:'30px'}
     if(env){
       style.width = '1000px'
+      style.opacity = 0.7
     }
    return (
     <div>
@@ -49,7 +50,7 @@ class SimpleMap extends Component {
 
     this.updateEnv = this.updateEnv.bind(this)
     this.updateUserPosition = this.updateUserPosition.bind(this)
-
+    this.updateEnv()
     this.interval = setInterval(this.updateUserPosition,1000)
     this.interval2 = setInterval(this.updateEnv, 60000)
   }
@@ -139,7 +140,7 @@ class SimpleMap extends Component {
                   key={`measure${index}`}
                   lat={parseFloat(data.latitude) + 0.0031 }
                   lng={parseFloat(data.longitude) - 0.001 }
-                  img={data.dangerous ? redCircleIcon : greenCircleIcon}
+                  img={data.dangerous ? redCircleIcon : redCircleIcon}
                   env={true}
                 />
               )

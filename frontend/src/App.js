@@ -15,7 +15,6 @@ import Api from './Api'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-html5-camera-photo/build/css/index.css'
 
-
 class App extends React.Component{
 
   constructor(props){
@@ -25,6 +24,7 @@ class App extends React.Component{
     this.handleModal = this.handleModal.bind(this)
 
     window.handler = this.handleModal
+    // window.runn = false
 
     this.state ={
       showLogin: false,
@@ -46,7 +46,11 @@ class App extends React.Component{
       Util.getUserPostion().then((pos)=>{
         Global.pos = pos
       })
-    }, 1000)
+      // if(a++ > 6) return
+      // if(window.runn === false) return
+      // Global.pos.latitude +=  0.000009
+      // Global.pos.longitude -= 0.000001
+    }, 100)
 
     this.detectInnerMarkland = setInterval( ()=>{
       // console.log('detect')
@@ -57,8 +61,8 @@ class App extends React.Component{
 
         let distance = this.calDistance(Global.pos, landmark)
         // console.log(distance)
-        if(distance < 1e-8 && landmark.achieve !== true){
-          
+        if(distance < 3e-4 && landmark.achieve !== true){
+          // window.runn = false
           let n = Math.floor(Math.random() * 8 )
 
           while(Global.user.rewards.includes(n)){
@@ -108,21 +112,28 @@ class App extends React.Component{
         {this.state.showCamera ? 
           <Camera 
             onTakePhoto = {async (data)=>{
+              
+              let fetchGarbage = false
+              try{
+                let detectResult = await Api.detect(data)
+                fetchGarbage = detectResult.data.result
+              }
+              catch(e){
+                fetchGarbage = false
+              }
+              console.log(fetchGarbage)
               Global.snapshot = data
-              let detectResult = await Util.hasPerson(data)
-              console.log(detectResult, detectResult)
+
               this.handleModal('showMap', true)
               this.handleModal('showCamera', false)
               this.handleModal('showGarbageResult', true)
-
-              let fetchGarbage = false
               
-              if(true){
-                fetchGarbage = true
+              if(fetchGarbage){
                 Global.user.garbageTags.push({
                   lat:Global.pos.latitude,
                   lng:Global.pos.longitude
                 })
+                Global.user.score += 10
               }
 
               this.setState({

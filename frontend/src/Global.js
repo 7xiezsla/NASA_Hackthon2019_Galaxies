@@ -22,8 +22,8 @@ class Global{
       this.w = 377
       this.h = 672
       this.pos = {
-        latitude: 25.0292998,
-        longitude: 121.5030736
+        latitude: 25.0250126,
+        longitude:  121.5284135
       }
       this.userRewards = []
       this.userScore = 0
