@@ -24,7 +24,7 @@ module.exports = (app) => {
         const db = client.db('nasa');
         const reqBody = req.body;
         reqBody._id = reqBody.account;
-
+        console.log(reqBody);
         await db
             .collection('user')
             .insertOne(reqBody)
