@@ -7,6 +7,7 @@ import Map from './components/Map/Map'
 import Util from './Util'
 import Global from './Global'
 import Reward from './components/Reward'
+import GarbageResult from './components/GarbageResult'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-html5-camera-photo/build/css/index.css'
@@ -26,9 +27,13 @@ class App extends React.Component{
       showRegister: false,
       showCamera: false,
       showGame: false,
-      showMap: false,
+      showMap: true,
       showReward: false,
-      rewardPic: null
+      showGarbageResult: false,
+      rewardPic: null,
+      garbagePic: null,
+      fetchGarbage: false,
+      landmarkName: ''
     }
 
     this.interval = setInterval( ()=>{
@@ -50,14 +55,18 @@ class App extends React.Component{
           
           let n = Math.floor(Math.random() * 8 )
 
-          while(Global.userReward.has(n)){
+          while(Global.user.rewards.includes(n)){
             n = Math.floor(Math.random() * 8 )
           }
 
+          Global.user.rewards.push(n)
+          Global.user.score += 10
           landmark.achieve = true
+
           this.setState({
             showReward: true,
-            rewardPic: Global.rewards[n]
+            rewardPic: Global.rewards[n],
+            landmarkName: landmark.name
           })
 
           break;
@@ -87,11 +96,26 @@ class App extends React.Component{
       <div>
         <Login show={this.state.showLogin} actions={this.handleModal}/>
         <Register show={this.state.showRegister} actions={this.handleModal}/>
-        <Reward show={this.state.showReward} actions={this.handleModal} pic={this.state.rewardPic}/>
+        <Reward show={this.state.showReward} actions={this.handleModal} pic={this.state.rewardPic} name={this.state.landmarkName}/>
+        <GarbageResult show={this.state.showGarbageResult} actions={this.handleModal} pic={this.state.garbagePic} fetchGarbage={this.state.fetchGarbage}/>
 
         {this.state.showCamera ? 
           <Camera 
-            onTakePhoto = {(data)=>{console.log(data)}}
+            onTakePhoto = {(data)=>{
+              Global.snapshot = data
+              this.handleModal('showMap', true)
+              this.handleModal('showCamera', false)
+              this.handleModal('showGarbageResult', true)
+
+              let fetchGarbage = false
+              if(true){
+                fetchGarbage = true
+              }
+              this.setState({
+                garbagePic: Global.snapshot,
+                fetchGarbage
+              })
+            }}
             isFullscreen= {true}
           />
         : 
@@ -106,7 +130,7 @@ class App extends React.Component{
 
         {
           this.state.showMap ?
-            <Map />
+            <Map actions={this.handleModal}/>
           :
           null
         }

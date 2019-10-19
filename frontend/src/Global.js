@@ -8,6 +8,7 @@ import reward7 from './components/reward/reward7.jpg'
 import reward8 from './components/reward/reward8.jpg'
 import reward9 from './components/reward/reward9.jpg'
 
+import userPhoto from './components/source/userPic.png'
 
 class Global{
   constructor(){
@@ -22,7 +23,32 @@ class Global{
         latitude: 25.0292998,
         longitude: 121.5030736
       }
-      this.userReward = new Set()
+      this.userRewards = []
+      this.userScore = 0
+
+      this.user = {
+        name : '地方媽媽',
+        photo : userPhoto,
+        score : 0,
+        rewards: [],
+        friends:[
+          {
+            name: '地方媽媽的媽媽',
+            photo: null,
+            score: 310
+          },
+          {
+            name: '張家睿',
+            photo: null,
+            score: 120
+          },
+          {
+            name: 'Yukaaa',
+            photo: null,
+            score: 510
+          }
+        ]
+      }
 
       this.rewards = [
         reward1, reward2, reward3, reward4, reward5, reward6, reward7, reward8, reward9
