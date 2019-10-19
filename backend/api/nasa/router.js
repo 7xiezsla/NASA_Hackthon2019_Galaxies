@@ -63,7 +63,7 @@ module.exports = (app, fs) => {
         //     Coordinate: Coordinate
         // }
 
-        if (req.url === '/user/login' | req.url === '/user/register') {
+        if (req.url === '/nasa/user/login' | req.url === '/nasa/user/register') {
             next();
         } else {
             const tokenStatus = await checkToken(req);

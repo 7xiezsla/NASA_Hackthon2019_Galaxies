@@ -1,15 +1,39 @@
 const fetch = require('node-fetch');
 const Mongo = require('mongodb');
 const MongoClient = Mongo.MongoClient;
-const mongoConnStr = 'mongodb://seal:seal1234@sealchang.asia:27017/admin';
+const mongoConnStr = 'mongodb://seal:seal1234@localhost:27017/admin';
 const mongoConnOpt = { useNewUrlParser: true, useUnifiedTopology: true };
 
 const main = async() => {
 
+    const getYYYYMMDDHH = () => {
+
+        const datetimeFix = (x) => {
+
+            if (x < 10) x = '0' + x;
+
+            return x;
+
+        };
+
+        let date = new Date();
+
+        const y = String(date.getFullYear());
+        const m = datetimeFix(date.getMonth() + 1);
+        const d = datetimeFix(date.getDate());
+        const H = datetimeFix(date.getHours() - 1);
+
+        yyyymmddhh = y + m + d + H;
+
+        return yyyymmddhh;
+
+    }
+
     let data;
 
-    await fetch('https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/O-A0003-001?Authorization=CWB-98C0377B-92C2-4721-8FDC-A2910E9D7B69&downloadType=WEB&format=JSON')
-        .then(res => res.json())
+    // await fetch('https://airtw.epa.gov.tw/json/AQI/Taiwan_' + '2019101910' + '.json')
+    await fetch('https://airtw.epa.gov.tw/json/AQI/Taiwan_' + getYYYYMMDDHH() + '.json')
+        .then(res => console.log(res.json()))
         .then(res => {
             const newdata = res.cwbopendata.location.map(d => {
 
@@ -35,19 +59,19 @@ const main = async() => {
         })
         .catch(e => console.log(e));
 
-    const client = await MongoClient.connect(mongoConnStr, mongoConnOpt);
+    // const client = await MongoClient.connect(req.mongoConnStr, req.mongoConnOpt);
 
-    const db = client.db('nasa');
-    const weather = db.collection('weather');
+    // const db = client.db('nasa');
+    // const weather = db.collection('weather');
 
-    data.forEach(async(d) => {
-        await weather
-            .insertOne(d)
-            .then(result1 => {})
-            .catch(e => {});
-    })
+    // data.forEach(d => {
+    //     await weather
+    //         .replaceOne(d)
+    //         .then(result1 => {})
+    //         .catch(e => {});
+    // })
 
-    client.close();
+    // client.close();
 
 }
 
