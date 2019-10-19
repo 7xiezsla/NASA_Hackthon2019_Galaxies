@@ -6,7 +6,7 @@ class User {
         this.password = ''
         this.name = ''
         this.sex = ''
-        this.age = ''
+        this.birth = ''
         this.relation = []
         this.score = 0
         this.coordinate = new Coordinate()

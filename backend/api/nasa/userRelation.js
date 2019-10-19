@@ -13,29 +13,21 @@ module.exports = (app) => {
         switch (behavior) {
             case 'add':
                 udt = { $push: reqBody };
-                await db
-                    .collection('user')
-                    .updateOne(qry, udt)
-                    .then(result1 => {
-                        res.json({ status: 1 });
-                    })
-                    .catch(e => {
-                        res.sendStatus(500);
-                    });
                 break;
             case 'remove':
-                udt = { $pull: reqBody }
-                await db
-                    .collection('user')
-                    .updateOne(qry, udt)
-                    .then(result1 => {
-                        res.json({ status: 1 });
-                    })
-                    .catch(e => {
-                        res.sendStatus(500);
-                    });
+                udt = { $pull: reqBody };
                 break;
         }
+
+        await db
+            .collection('user')
+            .updateOne(qry, udt)
+            .then(result1 => {
+                res.json({ status: 1 });
+            })
+            .catch(e => {
+                res.sendStatus(500);
+            });
 
         client.close();
 

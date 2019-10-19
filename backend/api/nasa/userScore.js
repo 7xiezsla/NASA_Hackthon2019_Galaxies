@@ -1,15 +1,18 @@
 module.exports = (app) => {
 
-    app.post('/nasa/user/register', async(req, res) => {
+    app.put('/nasa/user/score', async(req, res) => {
 
         const client = await req.MongoClient.connect(req.mongoConnStr, req.mongoConnOpt);
         const db = client.db('nasa');
         const reqBody = req.body;
-        reqBody._id = reqBody.account;
+        const qry = { account: req.account };
+        const value = +reqBody.value;
+
+        let udt = { $add: { score: Math.abs(value) } };
 
         await db
             .collection('user')
-            .insertOne(reqBody)
+            .updateOne(qry, udt)
             .then(result1 => {
                 res.json({ status: 1 });
             })

@@ -8,10 +8,14 @@ module.exports = (app) => {
         await db
             .collection('session')
             .deleteOne({ sId: req.sId })
-            .then(result1 => {})
-            .catch(e => {});
+            .then(result1 => {
+                res.json({ status: 1 });
+            })
+            .catch(e => {
+                res.sendStatus(500)
+            });
 
-        res.end();
+        client.close();
 
     });
 

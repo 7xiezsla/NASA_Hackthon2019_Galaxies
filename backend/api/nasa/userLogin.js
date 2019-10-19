@@ -53,7 +53,7 @@ module.exports = (app) => {
 
         await db
             .collection('user')
-            .findOne(qry, { projection: { password: 0 } })
+            .findOne(qry, { projection: { _id: 0, password: 0 } })
             .then(result1 => {
                 isValid = true;
                 res.cookie('sId', sId, { domain: '.sealchang.asia' });
