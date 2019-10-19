@@ -5,6 +5,7 @@ import Register from './components/Register'
 import Camera from 'react-html5-camera-photo'
 import Map from './components/Map/Map'
 import Util from './Util'
+import Global from './Global'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-html5-camera-photo/build/css/index.css'
@@ -27,12 +28,18 @@ class App extends React.Component{
     }
 
     this.state ={
-      showLogin: false,
-      showRegister: false,
+      showLogin: true,
+      showRegister: true,
       showCamera: false,
       showGame: false,
-      showMap: true
+      showMap: false
     }
+
+    this.interval = setInterval( ()=>{
+      Util.getUserPostion().then((pos)=>{
+        Global.pos = pos
+      })
+    }, 1000)
   }
 
   openLoginModal(){
