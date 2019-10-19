@@ -32,7 +32,13 @@ class Global{
         name : '地方媽媽',
         photo : userPhoto,
         score : 0,
-        rewards: [],
+        rewards: [2,3,4,5],
+        garbageTags: [
+          {
+            lat:25.025764899999998,
+            lng:121.5274893
+          }
+        ],
         friends:[
           {
             name: '地方媽媽的媽媽',

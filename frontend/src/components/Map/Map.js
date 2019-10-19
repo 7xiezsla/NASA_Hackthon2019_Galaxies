@@ -11,6 +11,7 @@ import museumIcon from './museum.png'
 import nationParkIcon from './NationPark.png'
 import schoolIcon from './school.png'
 import girlIcon from './girl.png'
+import trashIcon from './trash.png'
 
 const iconMapping = {
   'PM' : museumIcon,
@@ -79,6 +80,18 @@ class SimpleMap extends Component {
             })
           }
 
+          {
+            Global.user.garbageTags.map((d, index)=>{     
+              return( 
+                <AnyReactComponent
+                  key = {`trash${index}`}
+                  lat={d.lat}
+                  lng={d.lng}
+                  img={trashIcon}
+                />
+              )
+            })
+          }
           <AnyReactComponent
             lat={this.state.lat}
             lng={this.state.lng}
@@ -137,6 +150,7 @@ class SimpleMap extends Component {
           zIndex:1,
         }}
           src={profileIcon}
+          onClick={()=>this.props.actions('showCollection', true)}
         />
 
         <img style={{

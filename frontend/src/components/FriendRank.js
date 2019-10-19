@@ -63,7 +63,7 @@ class FriendRank extends React.Component{
   render(){
     return (
       <Modal show={this.state.show} onHide={ () => this.props.actions('showFriendRank', false) } animation={false}>
-        <Modal.Header >
+        <Modal.Header closeButton>
           <Modal.Title>好友排行榜</Modal.Title>
         </Modal.Header>
         <Modal.Body>
