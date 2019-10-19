@@ -3,6 +3,7 @@ class Util{
     return new Promise((resolve, reject)=>{
       try{      
         navigator.geolocation.getCurrentPosition((pos)=>{
+          // console.log(pos.coords)
           resolve({
             latitude: pos.coords.latitude,
             longitude: pos.coords.longitude

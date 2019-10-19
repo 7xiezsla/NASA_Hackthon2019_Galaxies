@@ -1,3 +1,14 @@
+import reward1 from './components/reward/reward1.jpg'
+import reward2 from './components/reward/reward2.jpg'
+import reward3 from './components/reward/reward3.jpg'
+import reward4 from './components/reward/reward4.jpg'
+import reward5 from './components/reward/reward5.jpg'
+import reward6 from './components/reward/reward6.jpg'
+import reward7 from './components/reward/reward7.jpg'
+import reward8 from './components/reward/reward8.jpg'
+import reward9 from './components/reward/reward9.jpg'
+
+
 class Global{
   constructor(){
     if(Global.instance){
@@ -8,9 +19,14 @@ class Global{
       this.w = 377
       this.h = 672
       this.pos = {
-        latitude: 121.5030736,
-        longtitude: 25.0292998
+        latitude: 25.0292998,
+        longitude: 121.5030736
       }
+      this.userReward = new Set()
+
+      this.rewards = [
+        reward1, reward2, reward3, reward4, reward5, reward6, reward7, reward8, reward9
+      ]
 
       this.landmarks = [
         {name:'私立育才國小',	lat:25.0070989,	lng:121.5217335,	type:'school'},

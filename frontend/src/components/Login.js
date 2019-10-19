@@ -7,7 +7,7 @@ class Login extends React.Component{
   constructor(props){
     super(props)
     this.state={
-      show:true,
+      show:false,
       account: '',
       password: ''
     }
@@ -31,7 +31,7 @@ class Login extends React.Component{
 
   render(){
     return (
-      <Modal show={this.state.show} onHide={this.props.actions.closeLoginModal} animation={false}
+      <Modal show={this.state.show} onHide={()=> this.props.actions('showLogin', false)} animation={false}
         // style={{position:'absolute',top:'15%'}}
       >
         <Modal.Header>
@@ -58,12 +58,15 @@ class Login extends React.Component{
         <Modal.Footer>
           <Button variant="secondary" 
             onClick={()=>{
-              this.props.actions.closeLoginModal()
-              this.props.actions.openRegisterModal()
+              this.props.actions('showLogin', false)
+              this.props.actions('showRegister', true)
             }}>
             Register
           </Button>
-          <Button variant="primary" onClick={this.props.actions.closeLoginModal}>
+          <Button variant="primary" onClick={()=>{
+            this.props.actions('showLogin', false)
+            this.props.actions('showGame', true)
+          }}>
             Login
           </Button>
         </Modal.Footer>

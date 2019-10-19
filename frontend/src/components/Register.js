@@ -44,7 +44,7 @@ class Register extends React.Component{
 
   render(){
     return (
-      <Modal show={this.state.show} onHide={this.props.actions.closeRegisterModal} animation={false}
+      <Modal show={this.state.show} onHide={ () => this.props.actions('showRegister', false) } animation={false}
         // style={{position:'absolute',top:'15%'}}
       >
         <Modal.Header>
@@ -114,13 +114,13 @@ class Register extends React.Component{
         <Modal.Footer>
           <Button variant="secondary" 
             onClick={()=>{
-              this.props.actions.closeRegisterModal()
-              this.props.actions.openLoginModal()
+              this.props.actions('showRegister', false)
+              this.props.actions('showLogin', true)
           }}>
             Login
           </Button>
-          <Button variant="primary" onClick={this.props.actions.closeRegisterModal}>
-            Save Changes
+          <Button variant="primary" onClick={()=>{}}>
+            Confirm
           </Button>
         </Modal.Footer>
       </Modal>

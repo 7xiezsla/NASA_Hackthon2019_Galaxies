@@ -28,46 +28,36 @@ class SimpleMap extends Component {
     super(props)
 
     this.state ={
-      user:{
         lat: Global.pos.latitude,
-        lng: Global.pos.longtitude
-      }
+        lng: Global.pos.longitude
     }
 
     this.updateUserPosition = this.updateUserPosition.bind(this)
 
-    // this.interval = setInterval(this.updateUserPosition,1000)
+    this.interval = setInterval(this.updateUserPosition,1000)
   }
 
   updateUserPosition(){
-    let user = {
-      lat: Global.pos.latitude,
-      lng: Global.pos.longtitude
-    }
-    this.setState(user)
+
+    this.setState({
+      lat:Global.pos.latitude,
+      lng:Global.pos.longitude
+    })
   }
 
-  static defaultProps = {
-    center: {
-      lat: 25.0169638,
-      lng: 121.2261784
-    },
-    zoom: 11
-  };
-
   render() {
-    console.log(this.state.user)
+    console.log('user.pos', this.state)
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key:'AIzaSyCTDAI9Brud2mks7f9_wPUklccstP39M4E' }}
           defaultCenter={this.state.user}
-          defaultZoom={8}
+          defaultZoom={17}
           options={{ zoomControl: false,fullscreenControl:false,draggable:false}}
           center ={{
-            lat: 25.0070989,
-            lng: 121.5217335
+            lat: this.state.lat,
+            lng: this.state.lng
           }}
         >
           {
@@ -84,14 +74,11 @@ class SimpleMap extends Component {
             })
           }
 
-          {/* <AnyReactComponent 
-            // lat={this.state.user.lat}
-            // lng={this.state.user.lng}
-            lat={124}
-            lng={25}
-            text={123}
+          <AnyReactComponent
+            lat={this.state.lat}
+            lng={this.state.lng}
             img={girlIcon}
-          /> */}
+          />
 
         </GoogleMapReact>
       </div>
