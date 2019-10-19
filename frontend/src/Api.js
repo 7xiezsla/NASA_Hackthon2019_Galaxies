@@ -1,13 +1,12 @@
 
 class Api{
-  static register(){
+  static register(user){
 
   }
 
-  static login(){
+  static login(user){
 
   }
-
 }
 
 export default Api

@@ -2,7 +2,9 @@ import React from 'react';
 import Game from './Game'
 import Login from './components/Login'
 import Register from './components/Register'
+import Camera from 'react-html5-camera-photo';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-html5-camera-photo/build/css/index.css';
 
 class App extends React.Component{
 
@@ -21,8 +23,10 @@ class App extends React.Component{
     }
 
     this.state ={
-      showLogin: true,
-      showRegister: false
+      showLogin: false,
+      showRegister: false,
+      showCamera: true,
+      showGame: false 
     }
   }
 
@@ -44,11 +48,25 @@ class App extends React.Component{
   
 
   render(){
+    console.log(this.state.showLogin)
     return(
       <div>
         <Login show={this.state.showLogin} actions={this.actions}/>
         <Register show={this.state.showRegister} actions={this.actions}/>
-        <Game />
+        {this.state.showCamera ? 
+          <Camera 
+            onTakePhoto = {(data)=>{console.log(data)}}
+            isFullscreen= {true}
+          />
+        : 
+          null
+        }
+        {
+          this.state.showGame ?
+            <Game />
+          :
+          null
+        }
       </div>
     )
   }
