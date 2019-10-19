@@ -10,6 +10,7 @@ import Reward from './components/Reward'
 import GarbageResult from './components/GarbageResult'
 import FriendRank from './components/FriendRank'
 import Collection from './components/Collection'
+import Api from './Api'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-html5-camera-photo/build/css/index.css'
@@ -19,6 +20,7 @@ class App extends React.Component{
 
   constructor(props){
     window.util = Util
+    window.apii = Api
     super(props)
     this.handleModal = this.handleModal.bind(this)
 
@@ -105,8 +107,10 @@ class App extends React.Component{
 
         {this.state.showCamera ? 
           <Camera 
-            onTakePhoto = {(data)=>{
+            onTakePhoto = {async (data)=>{
               Global.snapshot = data
+              let detectResult = await Util.hasPerson(data)
+              console.log(detectResult, detectResult)
               this.handleModal('showMap', true)
               this.handleModal('showCamera', false)
               this.handleModal('showGarbageResult', true)
