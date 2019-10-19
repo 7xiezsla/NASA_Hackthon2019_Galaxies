@@ -2,13 +2,17 @@ import React from 'react';
 import Game from './Game'
 import Login from './components/Login'
 import Register from './components/Register'
-import Camera from 'react-html5-camera-photo';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-html5-camera-photo/build/css/index.css';
+import Camera from 'react-html5-camera-photo'
+import Map from './components/Map'
+import Util from './Util'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-html5-camera-photo/build/css/index.css'
 
 class App extends React.Component{
 
   constructor(props){
+    window.util = Util
     super(props)
     this.openLoginModal = this.openLoginModal.bind(this)
     this.openRegisterModal = this.openRegisterModal.bind(this)
@@ -25,8 +29,9 @@ class App extends React.Component{
     this.state ={
       showLogin: false,
       showRegister: false,
-      showCamera: true,
-      showGame: false 
+      showCamera: false,
+      showGame: false,
+      showMap: true
     }
   }
 
@@ -48,7 +53,6 @@ class App extends React.Component{
   
 
   render(){
-    console.log(this.state.showLogin)
     return(
       <div>
         <Login show={this.state.showLogin} actions={this.actions}/>
@@ -64,6 +68,13 @@ class App extends React.Component{
         {
           this.state.showGame ?
             <Game />
+          :
+          null
+        }
+
+        {
+          this.state.showMap ?
+            <Map />
           :
           null
         }
