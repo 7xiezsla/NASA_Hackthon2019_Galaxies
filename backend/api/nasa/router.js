@@ -43,7 +43,7 @@ module.exports = (app, fs) => {
 
     }
 
-    app.all('/nasa/*', async(req, res, next) => {
+    app.all('/nasa/*', cors({ origin: ['null', 'http://localhost', 'http://localhost:3000'], credentials: true }), async(req, res, next) => {
 
         let isAuthenticated = false;
         const Mongo = require('mongodb');
