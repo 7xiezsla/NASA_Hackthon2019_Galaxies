@@ -9,6 +9,8 @@ import reward8 from './components/reward/reward8.jpg'
 import reward9 from './components/reward/reward9.jpg'
 
 import userPhoto from './components/source/userPic.png'
+import person1 from './components/source/p1.png'
+import person2 from './components/source/p2.png'
 
 class Global{
   constructor(){
@@ -34,18 +36,13 @@ class Global{
         friends:[
           {
             name: '地方媽媽的媽媽',
-            photo: null,
+            photo: person1,
             score: 310
           },
           {
             name: '張家睿',
-            photo: null,
+            photo: person2,
             score: 120
-          },
-          {
-            name: 'Yukaaa',
-            photo: null,
-            score: 510
           }
         ]
       }
@@ -68,7 +65,8 @@ class Global{
         {name:'太魯閣國家公園',	lat:24.1938752, lng:121.4907536, type:'National_Park'},
         {name:'雪霸國家公園',	lat:24.5631665, lng:120.8185385, type:'National_Park'},
         {name:'金門國家公園',	lat:24.4441231, lng:118.3520516, type:'National_Park'},
-        {name:'墾丁國家公園',	lat:21.5848, lng:120.4749, type:'National_Park'}
+        {name:'墾丁國家公園',	lat:21.5848, lng:120.4749, type:'National_Park'},
+        {name:'國立臺灣師範大學',	lat:25.0259126, lng:121.5283135,	type:'school'}
       ]
       
     }

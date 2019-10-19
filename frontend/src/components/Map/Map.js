@@ -126,6 +126,7 @@ class SimpleMap extends Component {
           zIndex:1
         }} 
           src={friendRankIcon}
+          onClick={()=>this.props.actions('showFriendRank', true)}
         />
 
         <img style={{

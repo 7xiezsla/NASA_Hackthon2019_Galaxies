@@ -8,6 +8,7 @@ import Util from './Util'
 import Global from './Global'
 import Reward from './components/Reward'
 import GarbageResult from './components/GarbageResult'
+import FriendRank from './components/FriendRank'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-html5-camera-photo/build/css/index.css'
@@ -30,6 +31,7 @@ class App extends React.Component{
       showMap: true,
       showReward: false,
       showGarbageResult: false,
+      showFriendRank: false,
       rewardPic: null,
       garbagePic: null,
       fetchGarbage: false,
@@ -98,10 +100,12 @@ class App extends React.Component{
         <Register show={this.state.showRegister} actions={this.handleModal}/>
         <Reward show={this.state.showReward} actions={this.handleModal} pic={this.state.rewardPic} name={this.state.landmarkName}/>
         <GarbageResult show={this.state.showGarbageResult} actions={this.handleModal} pic={this.state.garbagePic} fetchGarbage={this.state.fetchGarbage}/>
+        <FriendRank show={this.state.showFriendRank} actions={this.handleModal} />
 
         {this.state.showCamera ? 
           <Camera 
             onTakePhoto = {(data)=>{
+              console.log(data)
               Global.snapshot = data
               this.handleModal('showMap', true)
               this.handleModal('showCamera', false)

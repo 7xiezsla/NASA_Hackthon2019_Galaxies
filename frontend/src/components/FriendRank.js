@@ -9,7 +9,9 @@ import Col from 'react-bootstrap/Col'
 class FriendRank extends React.Component{
   constructor(props){
     super(props)
- 
+    this.state={
+      show:false
+    }
   }
 
   componentWillReceiveProps(nextProps){
@@ -20,32 +22,59 @@ class FriendRank extends React.Component{
     }
   }
 
+  rankRenderHelper(){
+    let data = []
+
+    data.push({
+      name: Global.user.name,
+      photo: Global.user.photo,
+      score: Global.user.score,
+      hero:true
+    })
+
+    for(let i in Global.user.friends){
+      data.push(Global.user.friends[i])
+    }
+
+    data.sort((a,b)=>{
+      return b.score - a.score
+    })
+    
+    return data.map((f, index)=>{
+
+      let style = {
+        padding:'10px'
+      }
+
+      if(f.hero){
+        style.backgroundColor= '#cccccc'
+      }
+
+      return(
+      <Row key={f.name} style={style}>
+        <Col xs={1}>{index+1}</Col>                  
+        <Col xs={3}><img style={{width:'9vh', position:'relative', top:'-20%'}} src={f.photo} /></Col>
+        <Col xs={5}>{f.name}</Col>
+        <Col xs={2}>{f.score}</Col>
+      </Row>
+      
+    )})
+  }
   render(){
     return (
-      <Modal show={this.state.show} onHide={ () => this.props.actions('showRegister', false) } animation={false}>
+      <Modal show={this.state.show} onHide={ () => this.props.actions('showFriendRank', false) } animation={false}>
         <Modal.Header >
           <Modal.Title>好友排行榜</Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
-          {
-            Global.user.friends.map((f)=>{
-              return (
-
-              )
-            })
-          }
+          <Container>
+            {this.rankRenderHelper()}
+          </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" 
-            onClick={()=>{
-              this.props.actions('showRegister', false)
-              this.props.actions('showLogin', true)
-          }}>
-            Login
-          </Button>
-          <Button variant="primary" onClick={()=>{}}>
-            Confirm
+          <Button variant="primary" onClick={()=>{this.props.actions('showFriendRank', false)}}>
+            關閉
           </Button>
         </Modal.Footer>
       </Modal>
@@ -53,4 +82,4 @@ class FriendRank extends React.Component{
   }
 }
 
-export default Register
+export default FriendRank
