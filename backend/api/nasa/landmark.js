@@ -5,12 +5,12 @@ module.exports = (app) => {
         const client = await req.MongoClient.connect(req.mongoConnStr, req.mongoConnOpt);
         const db = client.db('nasa');
         const reqBody = req.query;
-        const range = 0.1;
-        const longitude = reqBody.longitude;
-        const latitude = reqBody.latitude;
+        const range = 0.5;
+        const longitude = +reqBody.longitude;
+        const latitude = +reqBody.latitude;
         const qry = {
-            longitude: { $gte: longitude - 0.1, $lte: longitude + 0.1 },
-            latitude: { $gte: latitude - 0.1, $lte: latitude + 0.1 }
+            longitude: { $gte: longitude - range, $lte: longitude + range },
+            latitude: { $gte: latitude - range, $lte: latitude + range }
         };
 
         // const pipeline = getPipeline(qry);

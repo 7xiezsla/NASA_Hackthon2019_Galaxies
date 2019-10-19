@@ -1,6 +1,5 @@
 module.exports = (app) => {
 
-
     app.get('/nasa/environment', async(req, res) => {
 
         const getPipeline = (longitude, latitude) => {

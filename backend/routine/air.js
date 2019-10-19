@@ -72,8 +72,6 @@ const main = async() => {
         })
         .catch(e => console.log(e));
 
-    console.log(data.length);
-
     if (data !== null) {
 
         const client = await MongoClient.connect(mongoConnStr, mongoConnOpt);
