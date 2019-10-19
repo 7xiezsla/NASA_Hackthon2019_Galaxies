@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import museumIcon from './museum.png'
+import nationParkIcon from './NationPark.png'
+import schoolIcon from './school.png'
+
+// const iconMapping = {
+//   ''
+// }
+
+const AnyReactComponent = ({text, img}) => {
+   return (
+    <div>
+     <img src={img} style={{width:'30px'}}></img>
+     {/* {text} */}
+    </div>
+  )};
 
 const data = [
   {name:'私立育才國小',	lat:25.0070989,	lng:121.5217335,	type:'school'},
@@ -30,6 +44,7 @@ class SimpleMap extends Component {
           bootstrapURLKeys={{ key:'AIzaSyCTDAI9Brud2mks7f9_wPUklccstP39M4E' }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
+          options={{ scrollwheel: false}}
           center ={{
             lat: 25.0070989,
             lng: 121.5217335
@@ -43,6 +58,7 @@ class SimpleMap extends Component {
                   lat={d.lat}
                   lng={d.lng}
                   text={d.name}
+                  img={museumIcon}
                 />
 
                 // <div lat={d.lat} lng={d.lng} key={d.text}>
