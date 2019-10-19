@@ -13,7 +13,7 @@ module.exports = (app) => {
             latitude: { $gte: latitude - 0.1, $lte: latitude + 0.1 }
         };
 
-        const pipeline = getPipeline(qry);
+        // const pipeline = getPipeline(qry);
 
         await db
             .collection('landmark')

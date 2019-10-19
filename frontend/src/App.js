@@ -3,7 +3,7 @@ import Game from './Game'
 import Login from './components/Login'
 import Register from './components/Register'
 import Camera from 'react-html5-camera-photo'
-import Map from './components/Map'
+import Map from './components/Map/Map'
 import Util from './Util'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
