@@ -64,23 +64,23 @@ module.exports = (app, fs) => {
         //     Landmark: Landmark,
         //     Coordinate: Coordinate
         // }
-
+        req.owner = 'seal';
         next()
-        /*
-        if (req.url === '/nasa/user/login' | req.url === '/nasa/user') {
-            next();
-        } else {
-            const tokenStatus = await checkToken(req);
-            isAuthenticated = tokenStatus.status;
-            req.owner = tokenStatus.owner;
-            req.sId = tokenStatus.sId;
-            if (isAuthenticated) {
+            /*
+            if (req.url === '/nasa/user/login' | req.url === '/nasa/user') {
                 next();
             } else {
-                res.sendStatus(401);
+                const tokenStatus = await checkToken(req);
+                isAuthenticated = tokenStatus.status;
+                req.owner = tokenStatus.owner;
+                req.sId = tokenStatus.sId;
+                if (isAuthenticated) {
+                    next();
+                } else {
+                    res.sendStatus(401);
+                }
             }
-        }
-        */
+            */
 
     })
 
