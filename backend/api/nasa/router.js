@@ -65,6 +65,8 @@ module.exports = (app, fs) => {
         //     Coordinate: Coordinate
         // }
 
+        next()
+        /*
         if (req.url === '/nasa/user/login' | req.url === '/nasa/user') {
             next();
         } else {
@@ -78,6 +80,7 @@ module.exports = (app, fs) => {
                 res.sendStatus(401);
             }
         }
+        */
 
     })
 
