@@ -43,6 +43,8 @@ module.exports = (app, fs) => {
 
     }
 
+    let cors = require('cors');
+
     app.all('/nasa/*', cors({ origin: ['null', 'http://localhost', 'http://localhost:3000'], credentials: true }), async(req, res, next) => {
 
         let isAuthenticated = false;
@@ -63,7 +65,9 @@ module.exports = (app, fs) => {
         //     Coordinate: Coordinate
         // }
 
+        console.log(req.url)
         if (req.url === '/nasa/user/login' | req.url === '/nasa/user/register') {
+            console.log('正常啊')
             next();
         } else {
             const tokenStatus = await checkToken(req);
